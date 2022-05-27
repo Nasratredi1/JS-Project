@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      src="https://unpkg.com/react@16/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class Counter extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            count: 0,
+          };
+        }
+
+        render() {
+          return (
+            <div>
+              <h1>{this.state.count}</h1>
+              <button onClick={this.decrement}>Decrement</button>
+              <button onClick={this.increment}>Increment</button>
+            </div>
+          );
+        }
+        // secute way for doing this for security purpose you might write in place of oldstate state or other
+        increment = () => {
+          this.setState(oldState =>({
+            count: oldState.count + 1
+          }));
+        }
+
+        decrement = () => {
+          this.setState(oldState => ({
+            count: oldState.count - 1
+          }));
+        }
+      }
+      class App extends React.Component {
+        render() {
+          return (
+            <div>
+              <Counter />
+              <Counter />
+              <Counter />
+            </div>
+          );
+        }
+      }
+      ReactDOM.render(<App />, document.querySelector("#app"));
+    </script>
+  </body>
+</html>

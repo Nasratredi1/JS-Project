@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      src="https://unpkg.com/react@16/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- button handleclick -->
+    <div id="app"></div>
+    <script type="text/babel">
+      class Hello extends React.Component {
+        render() {
+           return (
+             <div>
+             <h1> Hello</h1>
+             <button onClick={this.handleClick}>Click Here</button>
+             </div>
+           );
+          
+        }
+        handleClick = () => {
+          alert("Hi!");
+        }
+      }
+      class App extends React.Component {
+        render(){
+          return (
+            <div>
+              <Hello />
+              </div>
+          );
+        }
+      }
+      ReactDOM.render(<App />, document.querySelector("#app"));
+    </script>
+  </body>
+</html>

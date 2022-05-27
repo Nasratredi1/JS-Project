@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      src="https://unpkg.com/react@16/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Todo</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                tasks: ["thing one", "thing two","thing three"],
+                input: ""
+
+            };
+        }
+        render(){
+          return (
+            <div>
+             <h1>Tasks</h1>
+             <ul>
+              {this.state.tasks.map((task,i) =>    // give i for index fir removing the unique error we add i 
+                <li key={i}>
+                  {task}
+                  </li>
+                )}
+              </ul>
+              <div>
+                <input value={this.state.input} />
+                <button>Add Task</button>
+                
+                </div>
+              </div>
+
+          );
+        }
+      }
+      ReactDOM.render(<App />, document.querySelector("#app"));
+    </script>
+  </body>
+</html>

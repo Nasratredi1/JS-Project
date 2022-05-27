@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      src="https://unpkg.com/react@16/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Addition</title>
+  </head>
+  <body>
+    <!-- Addition game -->
+    <div id="app"></div>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          //component of the state
+          this.state = {
+            num1: 1,
+            num2: 1,
+            score: 0,
+            response: "",
+          };
+        }
+        render() {
+          return (
+            <div>
+              <h1>
+                {this.state.num1} + {this.state.num2}{" "}
+              </h1>
+              <input
+                onKeyPress= {this.inputKeyPress} onChange={this.updateResponse}
+                value={this.state.response}  />
+                <div>
+                  Score: {this.state.score}
+                  </div>
+            </div>
+          );
+        }
+        updateResponse = (event) => {
+          this.setState({
+            response: event.target.value
+          }); 
+        }
+        inputKeyPress = (event) => {
+          if(event.key === "Enter") {
+            const answer = parseInt(this.state.response);
+            if (answer === this.state.num1 + this.state.num2){
+              // answer is right
+              this.setState(state => ({
+                score: state.score + 1,
+                num1: Math.ceil(Math.random() * 10), // generating random number which ceil it
+                num2: Math.ceil(Math.random() * 10),
+                response: ""   // clear the response that i can write new
+
+              }));
+            } else {
+              // answer is wrong.
+              this.setState({
+                response:  ""
+              });
+             
+            }
+          }
+        }
+      }
+      ReactDOM.render(<App />, document.querySelector("#app"));
+    </script>
+  </body>
+</html>

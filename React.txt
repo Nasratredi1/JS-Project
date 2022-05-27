@@ -1,0 +1,50 @@
+Important Notes:
+
+React does not let you modify the state directly.
+
+React is a little bit smart about this things. they used for this This.setState function
+
+this is a function that's going to take a JavaScript object and let's me change the state
+of the application
+
+Difference B/w State and props:
+
+Props you can think of as attributes that you're going to provide into your component.
+And the component never changes its own props.
+
+Ex: hello and not want to change to hello to.
+
+While State is something that a component has that the component might change at 
+some point in the future.
+
+ when you have application state that state is never changed directly.
+
+Ex: count 0 and you change it to 1
+
+After 46 minute:
+
+ParseInt= Take the string parse it as an integer. and save it to respons or answer
+
+Question about what we've done here so far?
+
+Ternary condition :
+boolea_expression ? value_if_true : value_if_false
+
+if you don't provide the className you can used this quatation mark. "" 
+
+Some Useful JS Tools:
+
+const list1 = [1,2,3,4,5];
+const list2 = [...list1,6]  // they add 6 with list1
+
+IF you want to remove or delete something in a JavaScript used splice method
+
+const list1 = [1,2,3,4,5];
+list1.splice(3,1);  first arg pull out element start from  index 3 and 2nd arg remove one element which is 4
+
+list is now = [1,2,3,5]
+
+1.17 
+
+Remember map is a function that takes an array, and goes over every element in the array, and 
+lets me apply some function to it.

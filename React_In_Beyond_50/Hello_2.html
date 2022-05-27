@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      src="https://unpkg.com/react@16/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- Attributes or Props or properties -->
+    <div id="app"></div>
+    <script type="text/babel">
+      class Hello extends React.Component {
+        render() {
+           return <h1> Hello {this.props.name}</h1>;
+          // if you not write something with hello they print Hello Haffez
+          //return <h1> Hello {this.props.name || "Hafeez"}</h1>;
+        }
+      }
+      class App extends React.Component {
+        render(){
+          return (
+            <div>
+              <Hello name="Showkat" />
+              <Hello name="Sartaj" />
+              <Hello name="Najam"/>
+              <Hello name="Nasrat"/>
+              <Hello name="Inam"/>
+              <Hello />
+              </div>
+
+          );
+        }
+      }
+      ReactDOM.render(<App />, document.querySelector("#app"));
+    </script>
+  </body>
+</html>
