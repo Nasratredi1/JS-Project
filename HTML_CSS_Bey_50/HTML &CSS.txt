@@ -1,0 +1,18 @@
+What is veiwport :
+                   is just the visible area of the web page on the secreen.
+
+Media Queries:
+             basically let you customize  the CSS you use based upon the type 
+             of the media of the user veiwing the page              
+
+             @media (min-width: 500 px)
+              body {
+
+
+              }
+               // mean add CSS code that is only goin to
+             apply when my page is at least 500 pixels wide
+
+Flexbox:  
+           Is all about how do you lay out a list of things whey you go from laying them out
+           on a big screen to laying them out on different sized screens?
