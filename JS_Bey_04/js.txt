@@ -1,0 +1,29 @@
+JS: Is a client side language.
+
+Client vs Server
+Client:  the client is your computer, your web browser that your are interacting with,
+you're clicking buttons on for instance
+
+Server: The server is hosted somewhere else, code running elsewhere that you're talking to.
+Your web page was making the request to some server, where that server might 
+have been ruunig on your own computer. or maybe it was running on Herokue. and 
+you had some server running elsewhere. and it was communicating with that.
+But ultimately, you were making request to that server. and you were getting responses back.
+
+What Js going to allow us to do it to actually run code on  the client side,
+run code inside of the user's browser.
+
+Variable declarition in Js
+when i define a variable with let this is a mutable variable, in other words,
+ a variable that can change.
+
+
+ * Mostly We put js part in the bottom of body part
+
+ * DOM:Dom is a Document object Model. it refers to the general structure of this web page.
+
+ * When i click on the button, that triggers the hello 
+ function to run, and that's display the alert.
+
+ Document.querySelector is a function takes as its argument what's effectively a CSS selector.
+ in the same way that select the tag like H1, to mean select H1 tag.

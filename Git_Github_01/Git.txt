@@ -1,0 +1,120 @@
+Git: Is a piece of version control softwarare. 
+beyond watch till 15 min
+
+Git Totorial and How git is working.
+
+Extra: If you want to make a big application you have to to use Node in Node used Golink and socket io
+
+1) please make sure first that git  installed in your operating system.for this type git into your terminal.
+
+ * type in your terminal git clone <repostory url>
+ like:  git clone https://github.com/Nasratredi1/hello.git
+ * go to specific repository  cd <repository name>
+ * create a new file
+ touch filename.ext like touch index.html
+
+ for opening this file write:
+ code .
+
+ if you want to go that directory you can used below commondgit
+pwd
+cd / F   cd means change directory
+ls
+select that folder
+cd g
+cd React
+
+==> Now how i commit this .(git means changes)
+for this first we add that. to take some snapshot of the current state of the code.for this.
+for this first i want to add this.
+
+==> git add filename.ext
+like : git add hello.html
+then
+==> git commit -m "Add hello world"
+==> git status
+==> git push
+
+So if we summary this commond
+
+1) git clone repository url
+2) cd <repository name >
+3) create a file by using touch filename.ext
+4)opening this in vs code by using: code .
+5) for commiting we write this commond.
+6) git add hello.html
+  git add . // mean all
+7) git commit -m "Add hello world"
+8) git status
+9) git pushgit 
+after some code you want to push and commit your code use below commond.
+10) git commit -am "add heading"
+11) git push
+
+for opening this into browser how to look it in other Operating system
+
+==> open hello.html
+
+==> If you add some line to your code and then you want to update your code in github for this we used below commond.
+
+==> git commit -am "add heading"  // a stand for all
+then you have to push this .
+==> git push
+
+==> if someone add to your code some line and you want to downoload the latest version of this so wrtie below commond
+==> git pull // automatically update your vscode file.
+
+==> If you want to see who changed something to your repostory then by the help of below commond you can see it.
+git log . // they show you the author and time date and etc.
+
+==> to reset this changes we can used git reset
+
+* ==> Branching concept in git
+to cheack branch you can write : git branch
+
+==> to make a new branch commond
+    git checkout -b style // i want to make a style you can give any name
+(*) mean current which you in.
+
+==> Switch between branches.
+git checkout main // like you have already main branch
+
+ ==> Now when you move to any branch the vscode show you that file.
+
+ ==> More GitHub Features
+There are some useful features specific to GitHub that can help when you’re working on a project:
+Forking: As a GitHub user, you have the ability to fork any repository that you have access to, which creates a copy of the repository that you are the owner of. We do this by clicking the “Fork” button in the top-right.
+Ex : https://github.com/twbs/bootstrap
+
+==> Pull Requests: Once you’ve forked a repository and made some changes to your version, you may want to request that those changes be added to the main version of the repository.
+For example, if you wanted to add a new feature to Bootstrap, you could fork the repository, make some changes, and then submit a pull request. This pull request could then be evaluated
+and possibly accepted by the people who run the Bootsrap repository. This process of people making a few edits and then requesting that they be merged into a main repository is vital for
+what is known as open source software, or software that created by contributions from a number of developers.
+
+this the benifit of open source multiple people can work it.
+
+
+==> GitHub Pages: GitHub Pages is a simple way to publish a static site to the web. (We’ll learn later about static vs dynamic sites.) In order to do this:
+Create a new GitHub repository.
+Clone the repository and make changes locally, making sure to include an index.html file which will be the landing page for your website.
+Push those changes to GitHub.
+Navigate to the Settings page of your repository, scroll down to GitHub Pages, and choose the master branch in the dropdown menu.
+Scroll back down to the GitHub Pages part of the settings page, and after a few minutes, you should see a notification that “Your site is published at: …” including a URL where you can find your site!
+
+==> How to create the githup pages.
+create a new repository and give a below name:
+Nasratredi1.github.io // your username . etc like that.
+
+1) git that link and clone it. like below
+    ==> git clone https://github.com/Nasratredi1/Nasratredi1.github.io.git
+    ==> then go this repository and add some file to it.
+        cd Nasratredi1.github.io
+    ==> code . // add some code.
+    ==> Now i push this code to github.by below commond. like above
+    ==> git add index.html
+    ==> git commit -m "first commit"
+    ==> git push
+    ==> Now go to setting and scrool down. and github pages heading you see link they are already publiished
+
+
+*  if you want to see the content of a file in terminal write cat filename.ext
