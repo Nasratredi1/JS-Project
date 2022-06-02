@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <script>
+        document.addEventListener ('DOMContentLoaded',function(){
+            // Have each button change the color of the heading
+            document.querySelectorAll('.color-change').forEach(function(button){
+                button.onclick = function() {
+                    document.querySelector('#hello').style.color = button.dataset.color;
+                };
+            });
+        });
+        /* Explanition  of HTML 
+        I have heading, hello and then I have buttons, but these buttons have a few other different attributes
+        These button, insteed of having an ID, have a class because I want this class to refer to all three buttons
+        The class is called color change so later i can sya, all right.
+
+        and they also have this data attribute. And this data attributes is something that you can add 
+        to HTML elements if you want to store data alongside those elements.
+        And in perticular, I want each of my buttons to store data about what color
+        they should change the heading to when I click on that button.
+
+        so here i'm saying, button class equals color change.
+        data color equalls red, in order to mean. I want to store along with this button
+        some information and the information about what color it should turn.
+        it should turn the heading red in this case. and more.
+
+        JS Explanition
+
+        wait for the whole page to finish loading and so what's the code that I'm ultimately going to run?
+        I'm going to say, document dot query selectorall for any -- selcect everything that has a class of color change.
+        and now i have array of things. and now i can do use a function called for each
+
+        and what for each is going to do is it's basically going to take an array and apply a function for each element in that array.
+        so i've got this array of button and i would like to do the same thing for each of the buttons inside of this array.
+        And so what am i going to do each of these buttons?
+
+        Well i'm going to run this function. the function takes this argument the button itself.
+        the element of the array and what i'm going to do with that button?
+
+        well, when the button is clicked, then go ahead and run this function.
+        what is the function doing?
+        well, let's get the hello heading, get its style, change the color propery of the style.
+        and what value do i want to change it to? well i want to take the button and i want to get at its data dash color attribute 
+        and so how do i get at the data information of an HTML element?
+
+        In js you do this by saying button dot data set, which gets you at all the data informatin 
+        about that HTML Element. and i want access the color property of that.
+
+        so button dot data set dot color is a way of saying, all right, let's take this button, get at the data elements
+        within it, and extreact the color from it.
+
+
+        AUDIENCE: Why is button passed as the parameter to the function? 
+
+BRIAN YU: All right. So the question is why is button passed as the parameter to the function? This is part of the way that for each works.
+ What for each does is it takes an array and applies a function to every element in that array.
+So I can actually demonstrate-- this is a good opportunity to talk a little bit about functional programming,
+ which is something that JavaScript really enables, this idea of passing functions around as values of their own 
+ and that you'll see in other classes. CS51 really emphasizes functional programming as an idea and is very common 
+ in JavaScript programming in general. 
+
+ forEach ex:
+ 
+let arr = [1,2,3,4,5];
+undefined
+arr.forEach(function(elt){
+    console.log(elt);
+});
+output:
+ 1
+ 2
+ 3
+ 4
+ 5
+undefined
+
+
+Arrow Function 
+One new feature of ES6, one of the more recent versions of JavaScript, is a different way of defining functions. 
+You can have what are called arrow functions, which is this idea that you can define a function instead of using 
+the word function, you can use this arrow syntax to mean, take some input and then provide some output.
+
+* Arrow function itself does'nt have a name. it's just an anonymous function.
+
+() => {
+    alert('Hello, World!');
+}
+
+How to define an arrow function.
+const double = (x) => {   // takes an input x
+    return x * 2;
+}
+Ex:
+[1,2,3,4,5].forEach(elt => console.log(elt));
+ 1
+ 2
+ 3
+ 4
+ 5
+
+ And that arrow is this idea of element as the input to the function and the arrow
+  is the actual body of the function. After the arrow is what the function should actually do with that individual element.
+
+  Map() function :
+  What map is going to do is it's going to apply a function to every element in the array
+   and give me a new array as a result.
+   This is functional programming, passing a function as arguments around in order to create interesting behavior. Yeah? 
+   ex:
+   [1,2,3,4,5].map(elt => elt * 2 );
+output : (5) [2, 4, 6, 8, 10]
+
+Filter() in array.
+ you can also filter an array. So I could say, all right,
+  1, 2, 3, 4, 5, let me filter this array, take every element, and only return the elements that are greater than 2
+
+ex:
+[1,2,3,4,5].filter(elt => elt > 2 );
+(3) [3, 4, 5]
+
+AUDIENCE: Those filter mutate the array, or it doesn't do it? 
+
+BRIAN YU: Does filter mutate the array? No, it's just returning to me a new array that is the result of doing that filtering.
+
+
+
+
+        */
+    </script>
+</head>
+<body>
+    <h1 id="hello">Hello</h1>
+    <button class="color-change" data-color = "red">Red</button>
+    <button class="color-change" data-color = "blue">Blue</button>
+    <button class="color-change" data-color = "green">Green</button>
+    
+</body>
+</html>

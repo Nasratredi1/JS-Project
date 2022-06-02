@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            // change font color to red
+            document.querySelector ('#red').onclick = function() {
+                document.querySelector ('#hello').style.color = 'red';
+            };
+
+            // change font color to blue
+            document.querySelector('#blue').onclick = function () {
+                document.querySelector ('#hello').style.color = 'blue';
+            };
+            // change font color to green
+            document.querySelector('#green').onclick = function () {
+                document.querySelector ('#hello').style.color = 'green';
+            };
+        })
+
+        /*  Explanition.
+        first, we add an event listner, wait for the Dom content to load,
+        and then run this function same as before. basically just saying wait for the page 
+        to finish loading.
+
+        and then i'm saying, document dot query selector red get the red button the thing that has ID red.
+        when it's clicked on click run this function.
+        what function doing ?
+        it's saying, all right, let me select for the thing that has ID hello, that heading.
+        and then I can actually change its style.
+        I can say dot style to get the style of that element
+        and what property i want to change? what CSS property?
+        same as anything as this property. I want to change the color and I want to change the color to red.
+        
+        Question about anything so for?
+
+        IMP point that we must noted it is that. this code have some redundancy mean
+        one code is repeated multiple time.
+        so for betterness we make another file by the name of colors1.html which improve the 
+        versoin of hello0 i hope you watch it.
+        */
+    </script>
+    <title>My Website</title>
+</head>
+<body>
+    <h1 id="hello">Hello</h1>
+    <button id="red">Red</button>
+    <button id="blue">Blue</button>
+    <button id="green">Green</button>
+    
+</body>
+</html>
