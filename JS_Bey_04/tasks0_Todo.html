@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+    <script>
+        document.addEventListener ('DOMContentLoaded', () => {
+            document.querySelector ('#new-task').onsubmit = () => {
+                // create new item for list
+                const li = document.createElement('li'); // create a brand new HTML element
+                li.innerHTML = document.querySelector('#task').value;
+
+                // Add new itme to task list
+                document.querySelector ('#tasks').append(li);
+
+                // clear input field
+                document.querySelector("#task").value = '';
+                
+                // stop form from submitting
+                return false;
+            };
+        })
+    </script>
+</head>
+<body>
+    <h1>Tasks</h1>
+    <ul id="tasks">
+    </ul>
+    <form action="" id="new-task">
+        <input id="task" autocomplete="off" autofocus placeholder="New Task" type="text">
+        <input type="submit">
+    </form>
+    
+</body>
+</html>

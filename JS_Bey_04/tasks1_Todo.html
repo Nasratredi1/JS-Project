@@ -7,16 +7,25 @@
     <title>Tasks</title>
     <script>
         document.addEventListener ('DOMContentLoaded', () => {
+
+            // By default, submit button is disabled
+            document.querySelector('#submit').disabled = true;
+
+            // Enable button only if there is text in the input faild.
+            document.querySelector('#task').onkeyup = () => {
+                document.querySelector ('#submit').disabled = false;
+            };
             document.querySelector ('#new-task').onsubmit = () => {
                 // create new item for list
-                const li = document.createElement('li'); // create a new element
+                const li = document.createElement('li'); // create a brand new HTML element
                 li.innerHTML = document.querySelector('#task').value;
 
                 // Add new itme to task list
-                document.querySelector ('#tasks').appen(li);
+                document.querySelector ('#tasks').append(li);
 
-                // clear input field
+                // clear input field and disable button again
                 document.querySelector("#task").value = '';
+                document.querySelector ("#submit").disabled = true;
                 
                 // stop form from submitting
                 return false;
@@ -30,7 +39,7 @@
     </ul>
     <form action="" id="new-task">
         <input id="task" autocomplete="off" autofocus placeholder="New Task" type="text">
-        <input type="submit">
+        <input id = "submit" type="submit">
     </form>
     
 </body>
