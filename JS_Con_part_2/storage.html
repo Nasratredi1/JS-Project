@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+
+            // Set starting value of counter to 0
+            if (!localStorage.getItem('counter'))
+                localStorage.setItem('counter', 0);
+
+            // Load current value of  counter
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelector('#counter').innerHTML = localStorage.getItem('counter');
+
+                // Count every time button is clicked
+                document.querySelector('button').onclick = () => {
+                    // Increment current counter
+                    let counter = localStorage.getItem('counter');
+                    counter++;
+
+                    // Update counter
+                    document.querySelector('#counter').innerHTML = counter;
+                    localStorage.setItem('counter', counter);
+                }
+            });
+
+            /*
+            BRIAN YU: Sure. What is the scope of local storage? How wide does it go? When you deploy applications to the internet it's by the domain name. So something .COM,
+             for instance, would have its own local storage. In the case of files, your file systems basically are all going to share the same local storage. And you can actually 
+             see the contents of what's inside of local storage if you want to. If I Control Click on Chrome, at least, go into the inspector. 
+            */
+
+        </script>
+        <title>My Website</title>
+    </head>
+    <body>
+        <h1 id="counter"></h1>
+        <button>Click Here!</button>
+    </body>
+</html>

@@ -28,7 +28,7 @@ In third line i can take a function and set it equal to some variable of some va
 
 In line 2 function function is actually being provided as an argument to add event listener.
 this is a function that i'm saying, this is function that should run when the DOM content is loaded.
-in otherword  this is just a function that's describing what code is going to run when the content is done loading
+in otherword  this is just a function that's describing what code is going to run when the content is done loading.
 
 
 */

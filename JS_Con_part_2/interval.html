@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+
+            document.addEventListener('DOMContentLoaded', () => {
+                setInterval(count, 1000);
+            });
+
+            let counter = 0;
+
+            function count() {
+                counter++;
+                document.querySelector('#counter').innerHTML = counter;
+            }
+
+        </script>
+        <title>My Website</title>
+    </head>
+    <body>
+        <h1 id="counter">0</h1>
+    </body>
+</html>
+
+<!-- But here's the interesting part, when the DOM content is loaded we run this function called set interval, 
+count, and 1,000. So what this is basically saying is every 1,000 milliseconds, or every second, 
+run the count function again. And the result of that is-- I can open up interval.HTML. And then without 
+doing anything, every one second we're just going to increment that counter again and again and again.  -->

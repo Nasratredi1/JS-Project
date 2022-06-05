@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('#form').onsubmit = () => {
+                const currency = document.querySelector('#currency').value;
+                fetch(`https://api.exchangeratesapi.io/latest?base=USD&symbols=${currency}`)
+                .then(response => response.json())
+                .then(data => {
+                    const contents = `1 USD is equal to ${data.rates[currency]} $ {currency}.`
+                    documnet.querySelector('#result ').innerHTML = contents;
+                })
+                .catch (() => {
+                    document.qureySelector("#result").innerHTML = 'There was an error.'
+                })
+                return false;
+            };
+        })
+        /* Explanition
+        And so what we're going to do now is just show a brief example of trying to combine these two ideas together, of having a client side application that can talk 
+        to some web server or some web API. We'll talk a little bit more about APIs, or application programming interfaces, tomorrow. But let's do one brief example, that maybe
+         I want to write a website in JavaScript that allows me to get exchange rates. I want to figure out, OK, one US dollar, how many euros is that? 
+        
+         Or how many Japanese yen is that? For example. And I wanted to do that conversion. Now, I could look up currently what the conversion rate is and plug that into my JavaScript code,
+          but, of course, that's not totally accurate because tomorrow the exchange rates are going to change or even in a couple hours the exchange rates might change. I would like some way 
+          of knowing for sure what the current exchange rate is. 
+
+          And there happens to be an API that actually allows you to do this pretty easily. It's called Exchange Rates API. And you'd only know this by sort of Googling and looking around.
+           And there are different APIs that do different things. And if I type in API.exchangeratesapi.io/latest. And I got this just by reading the website's documentation. 
+
+           What that does for me is it gives me a big JavaScript object that looks rather complicated, but basically it's giving me a whole bunch of exchange rates. And it's telling me, 
+           OK, here is how many Canadian dollars 1.5117 is equal to what base currency, one euro. So it's giving me all these exchange rates that are potentially useful for me. 
+
+But, of course, I would rather not compare against the euro. I probably, in this case, want to be able to say, OK, how many of a certain currency is one US dollar? For example.
+ And so in this case, I'm going to say, OK, I'm going to provide a parameter to this API route and say, base equals USD. I want US dollars only. 
+
+ And instead of getting all the currencies, if I just wanted one currency, I would say, and symbols equals euros. And so there we get, OK, one US dollar is equal to 0.8801 euros,
+at least as of today and as of right now. So this is an API that's returning to me some JavaScript object. And I could use this information to be able to implement something 
+like a currency conversion application.
+
+And so Get Exchange Rate. One US dollar is equal to 109.66 Japanese yen. If I type in something that doesn't exist, like beyond is not a currency, OK, there was an error.
+ So how does this work? What is the code that actually implements this? We'll open up currency.HTML to take a look. 
+
+ HTML EXPLANITION
+ Inside the body of the page, the body is actually quite simple. I have a form that has an input field called currency where I can type in the currency that I want.
+  And I have a button, a Submit button for the form that just says Get The Exchange Rate. And I'm going to click on that button.
+
+  And then I have a line break. That's what BR is. And then a div that's currently empty, where eventually I'm going to put the result of this calculation,
+   whatever the result of looking up the exchange rate is. Now, what is the JavaScript that's making that work? Well, when the form is submitted, 
+   so on Submit for the form I'm going to get the value of the input field for the currency and save that in a variable called currency. '
+   
+   And then I'm going to use this function called fetch. And what fetch is going to do it it's just going to request-- make an HTTP request,
+    request some URL and get me back the results. And here I'm getting the results of going to API.exchangeratesapi.io/latest specifying
+     the base being US dollars, and what symbol do I want? I want whatever currency I'm trying to convert into as the currency.
+     
+     So this is me making what's called an AJAX request, an asynchronous request where I'm requesting from some other URL,
+      some other website not my own for some data. And in particular, I'd like data about the exchange rate, and then 
+      I'm going to get that back and do something with it. Before I go on, questions about this? I saw some yellow and red faces.
+       So I'll pause for questions if there are any. Yeah.
+
+       BRIAN YU: If you're using JQuery and you do $.get, that'll behave in a very similar way. There are many ways of
+        achieving the same general effect. Fetch just happens to be one of the more modern ways of doing so. But yeah,
+         there are many ways in JavaScript to make an outgoing HTTP request. This syntax of .then don't worry about too much. 
+
+         This has to do with JavaScript promises. But the basic idea, or at least the idea that you should be getting 
+         across is, OK, I'm going to request this information from the server, then take the response and convert it to JSON,
+          JavaScript Object Notation, until I get back a JavaScript object. And then with the resulting data, where is the 
+          actual exchange rate stored? Well, it's in a key called rates, and then this is the value. 
+
+          AUDIENCE: Yeah. I'm just a little confused about what is response and what is data and what exactly do they pull? 
+
+BRIAN YU: Yeah. So response, in this case, is a special JavaScript object that represents an HTTP response just
+ to some web request. And so an HTTP response happens to have a function called .Json, which takes that HTTP response,
+  converts it to a JavaScript object, just keys and values like we were doing with the questions this morning, and returns
+   that object. Of course, not all HTTP responses can be turned into objects, so there's a chance that something will go wrong there,
+    which is what the catch here is for in case something happens to go wrong. 
+
+So we take the HTTP response, convert it into an object, and then data is just going to be
+ that JavaScript object. It's just going to be literally this, the curly brace rates and then 
+ what the base is, for example. 
+
+ AUDIENCE: And how does data know that what it's taking in as input is response.Json? 
+
+BRIAN YU: How does data know that what it's taking in is a result of response.Json? 
+That's what this chaining .then is. So when you chain the .thens together, it's one 
+thing after another. I wouldn't worry too much about the specifics of the syntax here. 
+You can take a look at the example later as well for more examples of that.
+
+AUDIENCE: Just to make sure. Does that have to be [? response and ?] [? data? ?] Or we can just [? take it in whatever? ?] 
+
+BRIAN YU: No. Response and data are arbitrary names. They could be anything.
+
+    </script>
+</head>
+<body>
+    <form id="form">
+        <input id="currencey" autocomplete="off" autofocus placeholder="Currency" type="text">
+        <input type="submit" value="Get Exchange Rate ">
+    </form>
+    <br>
+    <div id="result"></div>
+</body>
+</html>
