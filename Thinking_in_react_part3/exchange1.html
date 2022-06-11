@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Hello</title>
+  </head>
+  <body>
+    <div id="app" />
+    <script type="text/babel">
+
+      class App extends React.Component {
+
+        constructor(props) {
+          super(props);
+          this.currencies = ["AUD", "CAD", "CHF", "CNY", "INR", "USD", "EUR", "GBP", "JPY", "NZD"];
+          this.cached = {}  // store the js object
+          this.state = {
+            base: "USD",
+            other: "EUR",
+            value: 0,
+            converted: 0
+          }
+        }
+
+        render() {
+          return (
+            <div>
+              <div>
+                <select name="base" value={this.state.base} onChange={this.makeSelection}>
+                  {this.currencies.map(currency => <option key={currency} value={currency}>{currency}</option>)}
+                </select>
+                <input value={this.state.value} onChange={this.changeValue} />
+              </div>
+              <div>
+                <select name="other" value={this.state.other} onChange={this.makeSelection}>
+                  {this.currencies.map(currency => <option key={currency} value={currency}>{currency}</option>)}
+                </select>
+                <input disabled={true} value={this.state.converted === null ? "Calculating..." : this.state.converted} />
+              </div>
+            </div>
+          );
+        }
+
+        makeSelection = (event) => {
+          this.setState({
+            [event.target.name]: event.target.value,
+            converted: null
+          }, this.recalculate);
+        }
+
+        changeValue = (event) => {
+          this.setState({
+            value: event.target.value,
+            converted: event.target.value === "" ? "" : null
+          }, this.recalculate);
+        }
+
+        recalculate = () => {
+          const value = parseFloat(this.state.value);
+          if (isNaN(value)) {
+            return;
+          }
+
+          // Check cache for something less than a minute old
+          if (this.cached[this.state.base] !== undefined && Date.now() - this.cached[this.state.base].timestamp < (1000 * 60)) {
+            this.setState({
+              converted: this.cached[this.state.base].rates[this.state.other] * value
+            })
+            return;
+          }
+
+          fetch(`https://api.exchangeratesapi.io/latest?base=${this.state.base}`)
+          .then(res => res.json())
+          .then(data => {
+            this.cached[this.state.base] = {
+              rates: data.rates,
+              timestamp: Date.now() // get the date object that represent the current timestamp
+            }
+            this.setState({
+              converted: data.rates[this.state.other] * value
+            })
+          });
+        }
+      }
+
+      ReactDOM.render(<App />, document.querySelector("#app"));
+
+    </script>
+  </body>
+</html>
+
+
+<!-- Originally, the converted value was equal to this value, data.rates, this.state.other times value. But it's no longer going to be stored in data.rates.
+ Instead of data, the information is stored in the cache, so this.cached, this.state.base, get at the exchange rates in the cache, convert it to the other currency, and multiply it by the value. 
+ So fair amount of code here. We'll zoom out, see if you can see what's going on here. 
+
+We have a condition. It's running a check. The first part of the check is saying, is there actually something in the cache for this currency? Take the cache,
+ look up the base currency. If it's undefined, there's nothing in the cache, so we can't do anything. So we're checking to make sure there's actually something there. 
+
+And if there is something there, let's make sure it's recent enough to use. Let's take the current timestamp, subtract the time that we put the data in the cache, and make sure it's less than 1 minute,
+ 1,000 milliseconds times 60 seconds. Assuming this cache is valid and we can use it, we'll set the state, updating the value of the converted input field and say,
+ all right, let's take the value of the cache for this base currency, get the exchange rate for the other currency, and multiply it by whatever value was typed in. 
+
+At that point, we don't need to go on with the function, we've already been able to update the state. So I can just hit Return and say exit the function now. 
+A lot of code going on there. I encourage you to take a closer look at it. It's on the course website. 
+
+And if I open up exchange.html now, the first time I type in currency, like 1 US dollar, it's going to calculate for a moment. 
+But now if I update it, say, 12 US dollars, the update's almost instantaneous. You don't see calculating and then it changes, 
+because there's no longer this additional couple milliseconds of latency of going to the server, requesting the exchange rates, and then using that information. 
+
+It's just going to be using the cache. It's going to compare to whatever current value is in the cache to say this is within a minute. Let me just go ahead and update myself to go ahead and use the value that's 
+stored inside of the cache. Questions about that idea of why we did it, of how we did it? Yeah? 
+
+AUDIENCE: Yeah, so just in terms of the syntax, I'm a little bit confused. When you have this.cached bracket this.state.base, bracket dot rates, when do you use period, and when do you use brackets when you're [INAUDIBLE]? 
+
+SPEAKER: Great question. When do you use periods when you're going into a JavaScript object? When do you use the brackets? Long story short,
+ they're basically interchangeable, whereby if I go into the console here, and I have a JavaScript object-- I'll call it const object-- that has a key of A and a value of 2 and a key of B and a value of 8, for example, 
+ I can say object.a to get at the A property of the object.  -->
+
+ <!-- Local storage, meanwhile, you can think of as a type of cache whose job it is, is to store information inside the browser,
+  in particular so that information can be used by my application later if I open it up at a different time. It's especially useful for being 
+  able to store information inside the browser that will persist even when I close the page and reopen it. Because otherwise that probably wouldn't be the case.
+   And that's all happening on the client side, on the front end. 
+
+ Cookies, meanwhile, you can think of as having to do with the 
+ interaction between the server and the user, the client, whereby if you have a cookie, you can think of it as a way of the server 
+ keeping track of who you are, such that if the user, the client, is sending a cookie along with every web request it makes to the server, 
+ if the server sees that cookie multiple times, it knows, OK, I know who this individual is based upon the value of the cookie, for example.
+  There are also ways for cookies to store information about the state of the current user's interaction with a server, though we haven't really 
+  touched on that in this class. Yeah?  -->
+
+  <!-- what babel do:  that take care of the job of transpilling our code from JSX  into plain-old Javascript so that our
+  browser can understand it. -->
+ 

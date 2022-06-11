@@ -1,0 +1,15 @@
+Today, we'll continue our discussion of building web applications, in particular by talking about databases,
+ which are going to be particularly important if you ever go around to trying to store information inside of a
+  web application, managing users, or managing any kind of data in an application.
+  look at some more advanced tools like ORMs that allow you to interact with databases a little more easily. 
+
+  but the basic idea of what a database is, is you can think of it-- at least in our terms-- as a collection of tables. 
+  And a table looks something along these lines, or you have columns that each refer to a different category of data that
+   you might want to store, and then rows, one for each entry inside of a database. 
+
+   And so you'll generally want to use a database that scales a bit better, 
+   that is able to handle the load that a web application might bring. And MySQL and PostgreSQL 
+   are the sorts of databases that you might use for that. And so the database we're going to be 
+   using over the course of CS50 Beyond is going to be a PostgreSQL database,
+   And we're using this database in particular because it'll be very easy to deploy Heroku, 
+   the service we introduced a couple of days ago, to design and deploy a web application to the internet.

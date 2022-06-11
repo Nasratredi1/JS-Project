@@ -48,3 +48,47 @@ list is now = [1,2,3,5]
 
 Remember map is a function that takes an array, and goes over every element in the array, and 
 lets me apply some function to it.
+
+React part 2: 
+
+
+npm run build commond is doing below:
+So this is very helpful for development. But when I'm ready to actually build this program in order to ship it, for example, I would run something like NPM run build inside of my Hello directory. And that's going to run a special script that Facebook has put together that's going to basically take care of the process of taking all this code in different files and written in JSX and compile them for me into regular JavaScript that any web server can understand. 
+
+And so if I go into the build directory now, I see that I have all of these files here that are basically just going to be files that I can serve, using any old web server without the need to translate things from one language to another. And that will just work as well. So not going to delve 
+too much into that because there's a lot of details and nuances here that are worth exploring, and this changes from time to time. But just good to be aware of, in case you decide to continue with building React applications. 
+
+Always asked from yourself before implementing any application
+
+1) What state would you want to store?
+2) so even if you're not planning on programming.
+this, let's at least plan it out. Think in react
+
+3) Think in our minds about what the state of this looks like,
+
+4) what sort of event hadlers we would need for it.'
+we used onclike eventhandler in connect 4 game.
+
+5) what is the structure this is going to be?
+
+connect 4 thinking?
+
+SPEAKER: On click, yeah. And you probably want something like that, that for each of these table cells, 
+we have some sort of on-click mechanism for if you click on this table cell, well, that's going to correspond to
+ dropping something in this column. And there's probably no difference between clicking here and clicking here. 
+ Because either way, it's still clicking inside of the same column, given the nature of the game. 
+
+And so you can think about, all right, when someone clicks on a cell, you probably want to ask a question, 
+OK, what column is it in? Then you might want to ask a question like, is the column already filled? In which case,
+ well, we can't add anything more to it. 
+
+But if it's not already filled, then we can say something. 
+All right, let's go ahead and add something to that particular array inside of our application state. 
+So these are the sorts of questions, the sorts of things to be thinking about. Before you even write a single line of code,
+ think about, what are the components of the application? What is the state of the application going to look like? 
+ What sort of event handlers are you going to need? And this is the way to begin thinking about things inside of React. Yeah? 
+
+
+  Before you even write a single line of code, think about, what are the components of the application? 
+  What is the state of the application going to look like? What sort of event handlers are you going to need? 
+  And this is the way to begin thinking about things inside of React. Yeah? 

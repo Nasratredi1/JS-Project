@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Hello</title>
+  </head>
+  <body>
+    <div id="app" />
+    <script type="text/babel">
+
+      class App extends React.Component {
+
+        constructor(props) {
+          super(props);
+          this.currencies = ["AUD", "CAD", "CHF", "CNY", "INR", "USD", "EUR", "GBP", "JPY", "NZD"];
+          this.state = {
+            base: "USD",
+            other: "EUR",
+            value: 0,
+            converted: 0
+          }
+        }
+
+        render() {
+          return (
+            <div>
+              <div>
+                <select name="base" value={this.state.base} onChange={this.makeSelection}>
+                  {this.currencies.map(currency => <option key={currency} value={currency}>{currency}</option>)}
+                </select>
+                <input value={this.state.value} onChange={this.changeValue} />
+              </div>
+              <div>
+                <select name="other" value={this.state.other} onChange={this.makeSelection}>
+                  {this.currencies.map(currency => <option key={currency} value={currency}>{currency}</option>)}
+                </select>
+                <input disabled={true} value={this.state.converted === null ? "Calculating..." : this.state.converted} />
+              </div>
+            </div>
+          );
+        }
+
+        makeSelection = (event) => {
+          this.setState({
+            [event.target.name]: event.target.value,
+            converted: null
+          }, this.recalculate);
+        }
+
+        changeValue = (event) => {
+          this.setState({
+            value: event.target.value,
+            converted: event.target.value === "" ? "" : null
+          }, this.recalculate);
+        }
+
+        recalculate = () => {
+          const value = parseFloat(this.state.value);
+          if (isNaN(value)) {
+            return;
+          }
+
+          fetch(`https://api.exchangeratesapi.io/latest?base=${this.state.base}`)
+          .then(res => res.json())
+          .then(data => {
+            this.setState({
+              converted: data.rates[this.state.other] * value
+            })
+          });
+        }
+      }
+
+      ReactDOM.render(<App />, document.querySelector("#app"));
+
+    </script>
+  </body>
+</html>
+
+ <!-- in a state we write those variable  which is changible
+
+
+-->
